@@ -7,6 +7,10 @@ import Hero from "./Hero";
 const HomeView = ({ fromError }) => {
   return (
     <div className="home" data-testid="home">
+      <form method="POST" action="/query-list">
+        <input type="text" name="query" />
+        <button>submit</button>
+      </form>
       <Spring
         from={{ height: 100, opacity: 0 }}
         to={{ height: 400, opacity: 1 }}>

@@ -24,7 +24,7 @@ const HomeSearchView = ({
 }) => {
   return (
     <div className="homeSearch" data-testid="homeSearch" style={style}>
-      <form onSubmit={actions.submitQuery}>
+      <form method="POST" action="/query-list">
         <div className="welcomeTitle" data-testid="welcomeTitle">
           <h4>Enter a Title to Get Started</h4>
         </div>
@@ -34,7 +34,7 @@ const HomeSearchView = ({
             <input
               className="homeSearch"
               id="search-input"
-              name="search-input"
+              name={query}
               aria-required="true"
               type="text"
               value={query}
@@ -50,7 +50,7 @@ const HomeSearchView = ({
                 Sorry, we couldn't find any books that matched your request
               </p>
             )}
-            <Button onClick={actions.submitQuery} />
+            <button>Find Books</button>
           </div>
         </div>
         <div className="sources">
