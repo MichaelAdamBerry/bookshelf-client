@@ -39,24 +39,22 @@ export const ListView = ({ volumes, loading }) => {
 };
 
 ListView.propTypes = {
-  volumes: PropTypes.array.isRequired
+  volumes: PropTypes.array,
+  loading: PropTypes.bool
 };
 
 class List extends React.Component {
   state = { loading: true };
   async componentDidMount() {
     const query = queryString.parse(this.props.location.search);
-    console.log("List component fires and query is parsed as ", query);
     const { history } = this.props;
     const URLForQuery = "/list-data/" + query.q;
-    console.log("URLForQuery is ", URLForQuery);
     const res = await fetch(URLForQuery);
     const results = await res.json();
     if (!results.data.items) {
       this.setState({ noResults: true });
       history.replace({ pathname: "/", state: { error: true } });
     } else {
-      console.log(results.data.items);
       this.setState({ volumes: results.data.items });
       setTimeout(() => {
         this.setState({ loading: false });
@@ -66,7 +64,7 @@ class List extends React.Component {
   render() {
     const { volumes, noResults, loading } = this.state;
     return (
-      <div>
+      <div className="listContainer">
         <ListView volumes={volumes} noResults={noResults} loading={loading} />
       </div>
     );

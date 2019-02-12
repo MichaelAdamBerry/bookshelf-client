@@ -9,9 +9,10 @@ import {
   faStarHalf,
   faSpinner
 } from "@fortawesome/free-solid-svg-icons";
+import { fab } from "@fortawesome/free-brands-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
-library.add(faStar, faStarHalf, faSpinner);
+library.add(faStar, faStarHalf, faSpinner, fab);
 
 class App extends Component {
   render() {

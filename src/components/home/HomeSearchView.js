@@ -1,13 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-
-export const Button = ({ innerText = "Find Books", onClick }) => {
-  return (
-    <button data-testid="findBooksBtn" type="submit" onClick={onClick}>
-      {innerText}
-    </button>
-  );
-};
+import Button from "../Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const HomeSearchView = ({
   actions,
@@ -49,9 +43,35 @@ const HomeSearchView = ({
           </div>
         </div>
         <div className="sources">
-          <p>Powered by google books</p>
-          <span />
-          <p>Crafted with React.js</p>
+          <p>
+            Powered by
+            <span
+              style={{
+                color: "#0266C8",
+                marginLeft: "1em"
+              }}>
+              <FontAwesomeIcon
+                icon={["fab", "google"]}
+                style={{ width: "1.5em", height: "1.5em" }}
+              />
+            </span>
+          </p>
+          <p>
+            Crafted with
+            <span style={{ color: "#43853d", margin: "0 1em 0 1em" }}>
+              <FontAwesomeIcon
+                icon={["fab", "node-js"]}
+                style={{ width: "1.5em", height: "1.5em" }}
+              />
+            </span>{" "}
+            &
+            <span style={{ color: "#61dafb", marginLeft: "1em" }}>
+              <FontAwesomeIcon
+                icon={["fab", "react"]}
+                style={{ width: "1.5em", height: "1.5em" }}
+              />
+            </span>
+          </p>
           <span />
         </div>
       </form>

@@ -30,14 +30,17 @@ function VolumeCardView(props) {
     previewLink,
     categories
   } = props;
+  //const titleSpace = !averageRating ? "space-between" : "space-around";
   return (
     <div className="volumeContainer">
       <div>
         <div className="miniHeader">
-          <div className="titleInfo">
+          <div
+            className="titleInfo"
+            style={{ justifyContent: "space-between" }}>
             <h5>{title}</h5>
             <p>{moment(publishedDate).format("Y")}</p>
-            <div>
+            <div style={{ marginLeft: "1em" }}>
               {!averageRating === false && (
                 <Stars averageRating={props.averageRating} />
               )}

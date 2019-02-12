@@ -3,6 +3,7 @@ import { Spring, config, animated as a } from "react-spring/renderprops";
 import CoverImg from "../CoverImg";
 import PropTypes from "prop-types";
 import stripHtml from "string-strip-html";
+import Button from "../Button";
 
 const Front = ({ imageLinks }) => {
   return <CoverImg imageLinks={imageLinks} maxRes={true} width={"350px"} />;
@@ -30,11 +31,7 @@ export default class BookFlipper extends React.Component {
     return (
       <div onClick={this.handleClick} className="imgWrapper">
         <Spring
-          config={key =>
-            key === "opacity"
-              ? { tension: "120", friction: "120" }
-              : config.slow
-          }
+          config={key => (key === "opacity" ? config.gentle : config.slow)}
           to={{
             opacity: `${flipped ? "1" : "0"}`,
             transform: `perspective(600px) rotateY(${
@@ -62,14 +59,28 @@ export default class BookFlipper extends React.Component {
                   borderRadius: "3%",
                   boxShadow: "rgb(51, 46, 46) 5px 5px 30px"
                 }}>
-                <Back description={description} previewLink={previewLink} />
+                <Back description={description} />
               </a.div>
               <a.div
                 className="c"
                 style={{
                   opacity
                 }}>
-                <p>{stripHtml(description)}</p>
+                <div
+                  style={{
+                    height: "420px",
+                    border: "solid 1px gray",
+                    borderRadius: "3px",
+                    margin: "1em",
+                    overflow: "scroll"
+                  }}>
+                  <p>{stripHtml(description)}</p>
+                  <div>
+                    <a href={previewLink} hidden={!flipped}>
+                      <Button innerText="View Preview" />
+                    </a>
+                  </div>
+                </div>
               </a.div>
             </>
           )}

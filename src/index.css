@@ -22,8 +22,8 @@ body {
   flex: 1 0 auto; /* 2 */
   padding: var(--space) var(--space) 0;
   width: 100%;
-  /* background-color: #0000009e; */
-  background: rgba(0, 0, 0, 0.1);
+  background-color: #0000009e;
+
   z-index: -1;
 }
 
@@ -291,7 +291,6 @@ a button {
   text-align: center;
   box-shadow: 5px 5px 5px #191818;
   background-color: #080808db;
-  margin: 0% 10%;
   padding: 1em;
 }
 
@@ -312,16 +311,12 @@ label {
 
 .sources {
   font-size: smaller;
-  font-style: italic;
   font-weight: lighter;
   padding-top: 3em;
-  color: #212121;
 }
 
 .sources p {
   margin-block-start: 0;
-  margin-block-end: 0;
-  color: #212121;
 }
 
 .homeSearch .textArea {
@@ -407,10 +402,12 @@ label {
 }
 
 .c p {
+  font-style: normal;
   padding: 30px;
-  color: #2f2f2f;
+
   text-align: justify;
-  font-size: larger;
+
+  color: "#2f2f2f";
 }
 
 @media only screen and (max-width: 600px) {
