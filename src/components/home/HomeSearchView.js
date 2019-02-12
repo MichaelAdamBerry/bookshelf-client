@@ -1,18 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export const Button = ({ onClick }) => {
+export const Button = ({ innerText = "Find Books", onClick }) => {
   return (
     <button data-testid="findBooksBtn" type="submit" onClick={onClick}>
-      Find Books
+      {innerText}
     </button>
   );
 };
-
-// const NoInputError = ({ emptySubmit, noTextInput }) => {
-//   return emptySubmit && noTextInput ? (
-// ;
-// };
 
 const HomeSearchView = ({
   actions,
@@ -24,7 +19,7 @@ const HomeSearchView = ({
 }) => {
   return (
     <div className="homeSearch" data-testid="homeSearch" style={style}>
-      <form method="POST" action="/query-list">
+      <form onSubmit={actions.submitQuery}>
         <div className="welcomeTitle" data-testid="welcomeTitle">
           <h4>Enter a Title to Get Started</h4>
         </div>
@@ -50,7 +45,7 @@ const HomeSearchView = ({
                 Sorry, we couldn't find any books that matched your request
               </p>
             )}
-            <button>Find Books</button>
+            <Button onClick={actions.submitQuery} />
           </div>
         </div>
         <div className="sources">

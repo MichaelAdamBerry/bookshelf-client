@@ -3,6 +3,7 @@ import Card from "../card/Card";
 import PropTypes from "prop-types";
 import CardSpring from "./ListCardView";
 import Spinner from "../Spinner";
+import queryString from "query-string";
 
 const ListItem = ({ volume }) => {
   return (
@@ -43,22 +44,24 @@ ListView.propTypes = {
 
 class List extends React.Component {
   state = { loading: true };
-  componentDidMount() {
+  async componentDidMount() {
+    const query = queryString.parse(this.props.location.search);
+    console.log("List component fires and query is parsed as ", query);
     const { history } = this.props;
-    fetch("/query-list-data")
-      .then(res => res.json())
-      .then(json => {
-        if (!json.data.items) {
-          this.setState({ noResults: true });
-          history.replace({ pathname: "/", state: { error: true } });
-        }
-        console.log(json.data.items);
-        this.setState({ volumes: json.data.items });
-      });
-
-    setTimeout(() => {
-      this.setState({ loading: false });
-    }, 1000);
+    const URLForQuery = "/list-data/" + query.q;
+    console.log("URLForQuery is ", URLForQuery);
+    const res = await fetch(URLForQuery);
+    const results = await res.json();
+    if (!results.data.items) {
+      this.setState({ noResults: true });
+      history.replace({ pathname: "/", state: { error: true } });
+    } else {
+      console.log(results.data.items);
+      this.setState({ volumes: results.data.items });
+      setTimeout(() => {
+        this.setState({ loading: false });
+      }, 1000);
+    }
   }
   render() {
     const { volumes, noResults, loading } = this.state;

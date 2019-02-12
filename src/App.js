@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/home/Home";
 import List from "./components/list/List";
+import Volume from "./components/volume/Volume";
 import {
   faStar,
   faStarHalf,
@@ -21,6 +22,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/list" component={List} />
+              <Route path="/volume" component={Volume} />
             </Switch>
           </>
         </Router>
