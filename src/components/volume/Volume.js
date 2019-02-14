@@ -1,6 +1,5 @@
 import React from "react";
 import queryString from "query-string";
-
 import { Spring } from "react-spring/renderprops";
 import Card from "../card/Card";
 import VolumeCardView from "./VolumeCardView";
@@ -35,14 +34,10 @@ export default class Volume extends React.Component {
 
   async componentDidMount() {
     const search = queryString.parse(this.props.location.search);
-    console.log(search.id);
     const apiUrl = "/volume-data/id/" + search.id;
-    console.log(apiUrl);
     const data = await fetch(apiUrl);
-    console.log("data", data);
     const volume = await data.json();
-    console.log("volume", volume.data);
-    this.setState({ volume: volume.data }, console.log(this.state));
+    this.setState({ volume: volume.data });
     setTimeout(() => {
       this.setState({ loading: false });
     }, 1000);

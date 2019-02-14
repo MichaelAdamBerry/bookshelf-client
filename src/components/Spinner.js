@@ -12,7 +12,7 @@ export default class Spinner extends React.Component {
         <FontAwesomeIcon
           icon={faSpinner}
           className="faSpin"
-          style={{ height: "2em", width: "2em", color: "white" }}
+          style={{ height: "3em", width: "3em", color: "white" }}
           spin
         />
       </div>
